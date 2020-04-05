@@ -11,14 +11,22 @@ interface TeamProps {
   users: User[]
 }
 
-const TeamItem: React.FC<TeamProps> = ({team, users}) => (
-  <div className="Team">
-    <strong className="Team__name">{team.name}</strong>
-    <div className="Team__users">
-      Users: {users.map(user => `${user.firstName} ${user.lastName}`).join(', ')}
+const USERS_TO_DISPLAY = 3
+
+const TeamItem: React.FC<TeamProps> = ({team, users}) => {
+  let usersList = users.slice(0, USERS_TO_DISPLAY).map(user => `${user.firstName} ${user.lastName}`).join(', ')
+  if (users.length > USERS_TO_DISPLAY) {
+    usersList = `${usersList}...`
+  }
+
+  return (
+    <div className="Team">
+      <strong className="Team__name">{team.name}</strong>
+      <div className="Team__users Team__users--all">Users: {usersList}</div>
+      {/* <div className="Team__users Team__users--approvers">Approvers: TBD</div> */}
     </div>
-  </div>
-)
+  )
+}
 
 export const TeamsPage: React.FC = () => {
   const dispatch = useDispatch()
