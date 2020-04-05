@@ -10,9 +10,54 @@
   padding: 0.5rem 0;
   margin: 0 0 1rem 0;
   border-bottom: 1px dashed #ccc;
-  font-size: 2rem;
+  font-size: 1rem;
+}
+
+.App__header h1 {
+  margin: 0;
 }
 
 .App__main {
   color: #333;
+  position: relative;
+}
+
+.App__overlay {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 4rem;
+  background: rgba(0,0,0,.25)
+}
+
+.App__overlay-cancel {
+  position: absolute;
+  right: 4.5rem;
+  top: 4rem;
+  cursor: pointer;
+  font-size: 2rem;
+  border: none;
+  background: none;
+  color: #aaa;
+}
+
+.App__overlay-content {
+  background: #fff;
+  border-radius: 0.2rem;
+  padding: 1rem 2rem;
+}
+
+.Page {
+  padding: 1rem;
+  background: #fff;
+}
+
+.Page h2 {
+  margin: 1rem 0;
+  padding: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+  border-bottom: 1px solid #eee;
 }
