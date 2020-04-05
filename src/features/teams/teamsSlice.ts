@@ -1,23 +1,35 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { getTeams, Team as ApiTeam } from '../../api'
+import { getTeams, getUsers, ApiTeam, ApiUser } from '../../api'
 import { AppThunk } from '../../app/store'
-
-// Team interface is exactly the same like the one from API so we re-export it
 export interface Team {
   id: string
   name: string
   users: string[]
 }
 
+export interface User {
+  id: string
+  firstName: string
+  lastName: string
+  email: string
+}
+
 interface TeamsState {
   teamsById: Record<string, Team>
+  usersById: Record<string, User>
   isLoading: boolean
   error: string | null
 }
 
+interface GetDataActionPayload {
+  teams: ApiTeam[]
+  users: ApiUser[]
+}
+
 const teamsInitialState: TeamsState = {
   teamsById: {},
+  usersById: {},
   isLoading: false,
   error: null
 }
@@ -27,20 +39,28 @@ const teams = createSlice({
   name: 'teams',
   initialState: teamsInitialState,
   reducers: {
-    getTeamsStart: (state: TeamsState) => {
+    getDataStart: (state: TeamsState) => {
       state.isLoading = true
       state.error = null
     },
-    getTeamsSuccess: (state: TeamsState, action : PayloadAction<ApiTeam[]>) => {
+
+    getDataSuccess: (state: TeamsState, action : PayloadAction<GetDataActionPayload>) => {
       state.isLoading = false
       state.error = null
+      const { teams, users } = action.payload
 
-      const teams = action.payload
-      teams.forEach(team => {
-        state.teamsById[team.id] = team
+      // normalize teams and users
+      users.forEach(user => state.usersById[user.id] = {
+        id: user.id,
+        firstName: user.first_name,
+        lastName: user.last_name,
+        email: user.email
       })
+
+      teams.forEach(team => state.teamsById[team.id] = {...team})
     },
-    getTeamsError: (state: TeamsState, action: PayloadAction<string>) => {
+
+    getDataError: (state: TeamsState, action: PayloadAction<string>) => {
       state.isLoading = false
       state.error = action.payload
     }
@@ -51,16 +71,18 @@ const teams = createSlice({
 export default teams.reducer
 
 // Get action creators
-const { getTeamsStart, getTeamsSuccess, getTeamsError } = teams.actions
+const { getDataStart, getDataSuccess, getDataError } = teams.actions
 
 // Provide Thunk for fetching data
-export const fetchTeams = (): AppThunk => async (dispatch) => {
+export const fetchTeamsAndUsers = (): AppThunk => async (dispatch) => {
   try {
-    dispatch(getTeamsStart())
-    const teams = await getTeams()
-    dispatch(getTeamsSuccess(teams))
+    dispatch(getDataStart())
+    const [teams, users] = await Promise.all([
+      getTeams(), getUsers()
+    ])
+    dispatch(getDataSuccess({ teams, users }))
   } catch (error) {
-    dispatch(getTeamsError(error.toString()))
+    dispatch(getDataError(error.toString()))
   }
 }
 
