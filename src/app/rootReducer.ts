@@ -1,6 +1,10 @@
 import { combineReducers } from '@reduxjs/toolkit'
 
-const rootReducer = combineReducers({})
+import teamsReducer from '../features/teams/teamsSlice'
+
+const rootReducer = combineReducers({
+  teams: teamsReducer
+})
 
 export type RootState = ReturnType<typeof rootReducer>
 

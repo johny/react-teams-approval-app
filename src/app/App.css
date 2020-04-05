@@ -12,3 +12,7 @@
   border-bottom: 1px dashed #ccc;
   font-size: 2rem;
 }
+
+.App__main {
+  color: #333;
+}
