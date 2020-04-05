@@ -47,7 +47,7 @@
 .App__overlay-content {
   background: #fff;
   border-radius: 0.2rem;
-  padding: 1rem 2rem;
+  padding: 1rem 2rem 2rem 2rem;
 }
 
 .Page {
@@ -60,4 +60,8 @@
   padding: 0 0 0.5rem 0;
   font-size: 1.25rem;
   border-bottom: 1px solid #eee;
+}
+
+.empty {
+  color: #999;
 }

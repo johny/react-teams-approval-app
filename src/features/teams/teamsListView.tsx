@@ -25,7 +25,7 @@ const TeamItem: React.FC<TeamProps> = ({team, users, onTeamSelect}) => {
     <div className="Team" onClick={() => onTeamSelect(team.id)}>
       <strong className="Team__name">{team.name}</strong>
       <div className="Team__users Team__users--all">Users: {usersList}</div>
-      {/* <div className="Team__users Team__users--approvers">Approvers: TBD</div> */}
+      <div className="Team__users Team__users--approvers">Approvers: TBD</div>
     </div>
   )
 }

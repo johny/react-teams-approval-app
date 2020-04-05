@@ -1,0 +1,19 @@
+.ApprovalStep {
+  margin: 1rem 0;
+  border: 1px solid #eee;
+}
+
+.ApprovalStep__bounds {
+  background: #eee;
+  padding: 1rem;
+  position: relative;
+}
+
+.ApprovalStep__remove {
+  position: absolute;
+  right: 1rem;
+}
+
+.ApprovalStep__user {
+  padding: 1rem;
+}

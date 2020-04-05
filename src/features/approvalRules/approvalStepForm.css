@@ -1,0 +1,32 @@
+.Form {
+  padding: 0.5rem;
+  background: #fafafa;
+  border-radius: 0.25rem;
+}
+
+.Form__row {
+  margin: 0.5rem 0;
+}
+
+.Form__row label {
+  display: inline-block;
+  font-weight: 700;
+  padding: 0.25rem;
+  text-align: right;
+}
+
+.Form__row input, .Form__row select {
+  padding: 0.25rem;
+  margin: 0 0.25rem 0 0;
+  width: 6rem;
+}
+
+.Form__row select {
+  width: 10rem;
+}
+
+.Form__actions {
+  margin: 1rem 0 0 0;
+  padding: 1rem 0;
+  border-top: 1px dashed #ccc;
+}
