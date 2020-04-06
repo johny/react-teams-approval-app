@@ -1,6 +1,6 @@
 # Approval flow example
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[See the demo](https://johny.github.io/react-teams-approval-app/)
 
 ## Running the project
 
@@ -49,3 +49,7 @@ Due to the time constrains the functionality is limited in certain areas
 [ ] Provide smart defaults for the step form
 [ ] Improve input validation
 [ ] Add E2E tests with Cypress
+
+## Notes
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
