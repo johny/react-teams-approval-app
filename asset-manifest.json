@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/react-teams-approval-app/static/css/main.5cbb1563.chunk.css",
+    "main.js": "/react-teams-approval-app/static/js/main.79ae6ff0.chunk.js",
+    "main.js.map": "/react-teams-approval-app/static/js/main.79ae6ff0.chunk.js.map",
+    "runtime-main.js": "/react-teams-approval-app/static/js/runtime-main.0748309f.js",
+    "runtime-main.js.map": "/react-teams-approval-app/static/js/runtime-main.0748309f.js.map",
+    "static/js/2.33b5623c.chunk.js": "/react-teams-approval-app/static/js/2.33b5623c.chunk.js",
+    "static/js/2.33b5623c.chunk.js.map": "/react-teams-approval-app/static/js/2.33b5623c.chunk.js.map",
+    "index.html": "/react-teams-approval-app/index.html",
+    "precache-manifest.9fe46d6d39f96a6f0b74969bb2fba8f0.js": "/react-teams-approval-app/precache-manifest.9fe46d6d39f96a6f0b74969bb2fba8f0.js",
+    "service-worker.js": "/react-teams-approval-app/service-worker.js",
+    "static/css/main.5cbb1563.chunk.css.map": "/react-teams-approval-app/static/css/main.5cbb1563.chunk.css.map",
+    "static/js/2.33b5623c.chunk.js.LICENSE.txt": "/react-teams-approval-app/static/js/2.33b5623c.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0748309f.js",
+    "static/js/2.33b5623c.chunk.js",
+    "static/css/main.5cbb1563.chunk.css",
+    "static/js/main.79ae6ff0.chunk.js"
+  ]
+}
