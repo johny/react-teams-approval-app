@@ -1,11 +1,11 @@
 import { combineReducers } from '@reduxjs/toolkit'
 
 import teamsReducer from '../features/teams/teamsSlice'
-import approvalRulesResucer from '../features/approvalRules/approvalRulesSlice'
+import approvalStepsResucer from '../features/approvalSteps/approvalStepsSlice'
 
 const rootReducer = combineReducers({
   teams: teamsReducer,
-  approvalRules: approvalRulesResucer
+  approvalSteps: approvalStepsResucer
 })
 
 export type RootState = ReturnType<typeof rootReducer>

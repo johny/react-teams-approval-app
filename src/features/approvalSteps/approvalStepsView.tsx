@@ -4,39 +4,38 @@ import { nanoid } from 'nanoid'
 
 import { RootState } from '../../app/rootReducer'
 
-import { createApprovalRule, deleteApprovalRule } from './approvalRulesSlice'
+import { createApprovalStep, deleteApprovalStep } from './approvalStepsSlice'
 
 import { ApprovalStep } from './approvalStep'
 import { ApprovalStepForm } from './approvalStepForm'
 import { getUserName } from '../../helpers'
 
-interface ApprovalRulesViewProps {
+interface ApprovalStepsViewProps {
   teamId: string
   onCancel: () => void
 }
 
-export const ApprovalRulesView: React.FC<ApprovalRulesViewProps> = ({teamId}) => {
+export const ApprovalStepsView: React.FC<ApprovalStepsViewProps> = ({ teamId }) => {
   const team = useSelector((state: RootState) => state.teams.teamsById[teamId])
-  const approvalRules = useSelector((state: RootState) => state.approvalRules.approvalRulesById)
+  const approvalSteps = useSelector((state: RootState) => state.approvalSteps.approvalStepsById)
   const usersById = useSelector((state: RootState) => state.teams.usersById)
 
   const dispatch = useDispatch()
 
   const [ isAdding, setIsAdding ] = useState(false)
 
-
   if (!team) {
     return null
   }
 
-  const teamApprovalRules = Object.values(approvalRules).filter(rule => rule.teamId === team.id)
+  const teamApprovalSteps = Object.values(approvalSteps).filter(step => step.teamId === team.id)
   const teamUsers = team.users.map(userId => {
     const user = usersById[userId]
     return { id: user.id, name: getUserName(user) }
   })
 
   const handleSubmit = (lowerBound: string, upperBound: string | undefined, userId: string) => {
-    dispatch(createApprovalRule({
+    dispatch(createApprovalStep({
       id: nanoid(),
       lowerBound: parseInt(lowerBound, 10),
       upperBound: upperBound ? parseInt(upperBound, 10) : Infinity,
@@ -48,30 +47,29 @@ export const ApprovalRulesView: React.FC<ApprovalRulesViewProps> = ({teamId}) =>
   }
 
   const handleCancel = () => { setIsAdding(false)}
-  const handleRemove = (ruleId: string) => {
-    dispatch(deleteApprovalRule(ruleId))
+  const handleRemove = (stepId: string) => {
+    dispatch(deleteApprovalStep(stepId))
   }
 
-  const renderApprovalRules = () => {
-    const rules = teamApprovalRules.map(rule => {
+  const renderApprovalSteps = () => {
+    const steps = teamApprovalSteps.map(step => {
     return (
       <ApprovalStep
-        key={rule.id} rule={rule}
-        onRemove={() => handleRemove(rule.id)}
-        approvalUser={getUserName(usersById[rule.userId])}
+        key={step.id} step={step}
+        onRemove={() => handleRemove(step.id)}
+        approvalUser={getUserName(usersById[step.userId])}
       />
     )})
 
-    return <>{rules}</>
+    return <>{steps}</>
   }
-
 
   return (
     <>
       <h2>Set up approvers</h2>
       <p>Who can approve requests of team {team.name}?</p>
 
-      {renderApprovalRules()}
+      {renderApprovalSteps()}
       {isAdding ?
         <ApprovalStepForm users={teamUsers} onCancel={handleCancel} onSubmit={handleSubmit} />
         : <button onClick={() => setIsAdding(true)}>Add approval step</button>}

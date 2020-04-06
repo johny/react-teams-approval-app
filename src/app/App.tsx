@@ -3,8 +3,7 @@ import React, { useState } from 'react';
 import './App.css'
 
 import { TeamsListView } from '../features/teams/teamsListView'
-import { ApprovalRulesView } from '../features/approvalRules/approvalRulesView'
-
+import { ApprovalStepsView } from '../features/approvalSteps/approvalStepsView'
 
 function App() {
   const [currentTeam, setCurrentTeam] = useState<string|null>(null)
@@ -24,7 +23,7 @@ function App() {
         <div className="App__overlay">
           <div className="App__overlay-content">
             <button className="App__overlay-cancel" onClick={onCancel}>&times;</button>
-            <ApprovalRulesView teamId={currentTeam} onCancel={onCancel} />
+            <ApprovalStepsView teamId={currentTeam} onCancel={onCancel} />
           </div>
         </div>
       )}

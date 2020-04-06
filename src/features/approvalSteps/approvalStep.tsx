@@ -1,32 +1,32 @@
 import React from 'react'
 
-import { ApprovalRule } from './approvalRulesSlice'
+import { ApprovalStep as ApprovalStepInterface } from './approvalStepsSlice'
 import { Money } from '../../components/money'
 
 import './approvalStep.css'
 
 interface ApprovalStepProps {
-  rule: ApprovalRule
+  step: ApprovalStepInterface
   approvalUser: string
   onRemove: () => void
 }
 
-export const ApprovalStep: React.FC<ApprovalStepProps> = ({ rule, approvalUser, onRemove }) => {
+export const ApprovalStep: React.FC<ApprovalStepProps> = ({ step, approvalUser, onRemove }) => {
   return (
     <div className="ApprovalStep">
       <div className="ApprovalStep__bounds">
-        {rule.lowerBound === 0 ? (
+        {step.lowerBound === 0 ? (
           <>
-            Up to <Money value={rule.upperBound} />
+            Up to <Money value={step.upperBound} />
           </>
-        ) : rule.upperBound === Infinity ? (
+        ) : step.upperBound === Infinity ? (
           <>
-            Above <Money value={rule.lowerBound} />
+            Above <Money value={step.lowerBound} />
           </>
         ) : <>
-          From <Money value={rule.lowerBound} />
+          From <Money value={step.lowerBound} />
           {' '}
-          to <Money value={rule.upperBound} />
+          to <Money value={step.upperBound} />
           </>
         }
 
