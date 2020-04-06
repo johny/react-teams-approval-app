@@ -29,11 +29,23 @@ Root level app component holds the `currentTeam` state which determines team tha
 - When user selects team by clicking on it, the modal with approvalSteps is rendered, with the scope of current team
 - Each change in redux store is synchronously stored to the LocalStorage. This state is also restored on initial load
 
+
 ### Limitations
 
-- Very limited validations
+Due to the time constrains the functionality is limited in certain areas
+
+- Very limited validations for the input (no checking for negative or overlapping values)
+- Handling of monetary values is simplified
 - Default input values are not user friendly
-- No editing of steps in between
+- No editing of existing steps
 - No validation of steps overlapping
 - Limited tests
 
+### TODOs
+
+[ ] Adds test coverage for ApprovalSteps
+[ ] Allow for editing existing step
+[ ] Allow adding steps in between existing steps if the range allows it
+[ ] Provide smart defaults for the step form
+[ ] Improve input validation
+[ ] Add E2E tests with Cypress
