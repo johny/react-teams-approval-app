@@ -29,7 +29,7 @@ const TeamItem: React.FC<TeamProps> = ({team, users, approvers, onTeamSelect}) =
   }
 
   return (
-    <div className="Team" onClick={() => onTeamSelect(team.id)}>
+    <div className="Team" onClick={() => onTeamSelect(team.id)} data-testid={`Team-${team.id}`}>
       <strong className="Team__name">{team.name}</strong>
       <div className="Team__users Team__users--all">Users: {usersList}</div>
       <div className="Team__users Team__users--approvers">Approvers: {approversList}</div>
@@ -48,8 +48,10 @@ export const TeamsListView: React.FC<TeamsListViwProps> = ({ onTeamSelect }) => 
   const { approvalStepsById } = useSelector((state: RootState) => state.approvalSteps)
 
   useEffect(() => {
-    dispatch(fetchTeamsAndUsers())
-  }, [dispatch])
+    if (Object.keys(teamsById).length === 0) {
+      dispatch(fetchTeamsAndUsers())
+    }
+  }, [teamsById, dispatch])
 
   const renderTeamsList = () => {
     return Object.keys(teamsById).map(teamId => {

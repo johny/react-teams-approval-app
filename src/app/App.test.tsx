@@ -1,8 +1,7 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import App from './App';
-
 import { renderWithRedux } from '../test-utils';
+
+import App from './App';
 
 test('renders app headline', () => {
   const { getByText } = renderWithRedux(<App />);

@@ -12,7 +12,6 @@ export interface User {
   id: string
   firstName: string
   lastName: string
-  email: string
 }
 
 interface TeamsState {
@@ -54,7 +53,6 @@ const teams = createSlice({
         id: user.id,
         firstName: user.first_name,
         lastName: user.last_name,
-        email: user.email
       })
 
       teams.forEach(team => state.teamsById[team.id] = {...team})
