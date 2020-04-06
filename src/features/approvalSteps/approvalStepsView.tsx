@@ -4,7 +4,7 @@ import { nanoid } from 'nanoid'
 
 import { RootState } from '../../app/rootReducer'
 
-import { createApprovalStep, deleteApprovalStep } from './approvalStepsSlice'
+import { createApprovalStep, deleteApprovalStep, ApprovalStep as ApprovalStepInterface } from './approvalStepsSlice'
 
 import { ApprovalStep } from './approvalStep'
 import { ApprovalStepForm } from './approvalStepForm'
@@ -28,21 +28,26 @@ export const ApprovalStepsView: React.FC<ApprovalStepsViewProps> = ({ teamId }) 
     return null
   }
 
-  const teamApprovalSteps = Object.values(approvalSteps).filter(step => step.teamId === team.id)
-  const teamUsers = team.users.map(userId => {
+  const teamApprovalSteps = Object.values(approvalSteps)
+    .filter(step => step.teamId === team.id)
+    .sort((a, b) => a.lowerBound - b.lowerBound)
+  const teamUsers = team.users
+    .filter(userId => !teamApprovalSteps.some(step => step.userId === userId)) // filter out user that were already selected
+    .map(userId => {
     const user = usersById[userId]
     return { id: user.id, name: getUserName(user) }
   })
 
   const handleSubmit = (lowerBound: string, upperBound: string | undefined, userId: string) => {
-    dispatch(createApprovalStep({
+    const draftStep: ApprovalStepInterface = {
       id: nanoid(),
       lowerBound: parseInt(lowerBound, 10),
-      upperBound: upperBound ? parseInt(upperBound, 10) : Infinity,
+      upperBound: upperBound ? parseInt(upperBound, 10) : null, // If not set by form, we use null
       userId,
       teamId: team.id
-    }))
+    }
 
+    dispatch(createApprovalStep(draftStep))
     setIsAdding(false)
   }
 

@@ -15,11 +15,11 @@ export const ApprovalStep: React.FC<ApprovalStepProps> = ({ step, approvalUser, 
   return (
     <div className="ApprovalStep">
       <div className="ApprovalStep__bounds">
-        {step.lowerBound === 0 ? (
+        {(step.lowerBound === 0 && step.upperBound)? (
           <>
             Up to <Money value={step.upperBound} />
           </>
-        ) : step.upperBound === Infinity ? (
+        ) : step.upperBound === null ? (
           <>
             Above <Money value={step.lowerBound} />
           </>
@@ -30,7 +30,7 @@ export const ApprovalStep: React.FC<ApprovalStepProps> = ({ step, approvalUser, 
           </>
         }
 
-        <button onClick={onRemove} className="ApprovalStep__remove">remove rule</button>
+        <button onClick={onRemove} className="ApprovalStep__remove">remove</button>
       </div>
       <div className="ApprovalStep__user">
         {approvalUser}

@@ -5,7 +5,7 @@ export interface ApprovalStep {
   teamId: string
   userId: string
   lowerBound: number,
-  upperBound: number,
+  upperBound: number | null,
 }
 
 interface ApprovalStepsState {
