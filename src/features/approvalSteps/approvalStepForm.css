@@ -15,7 +15,8 @@
   text-align: right;
 }
 
-.Form__row input, .Form__row select {
+.Form__row input,
+.Form__row select {
   padding: 0.25rem;
   margin: 0 0.25rem 0 0;
   width: 6rem;

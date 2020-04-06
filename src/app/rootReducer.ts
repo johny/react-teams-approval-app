@@ -1,13 +1,13 @@
-import { combineReducers } from '@reduxjs/toolkit'
+import { combineReducers } from "@reduxjs/toolkit";
 
-import teamsReducer from '../features/teams/teamsSlice'
-import approvalStepsResucer from '../features/approvalSteps/approvalStepsSlice'
+import teamsReducer from "../features/teams/teamsSlice";
+import approvalStepsResucer from "../features/approvalSteps/approvalStepsSlice";
 
 const rootReducer = combineReducers({
   teams: teamsReducer,
-  approvalSteps: approvalStepsResucer
-})
+  approvalSteps: approvalStepsResucer,
+});
 
-export type RootState = ReturnType<typeof rootReducer>
+export type RootState = ReturnType<typeof rootReducer>;
 
-export default rootReducer
+export default rootReducer;
