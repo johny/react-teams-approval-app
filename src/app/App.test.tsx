@@ -2,8 +2,10 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+import { renderWithRedux } from '../test-utils';
+
+test('renders app headline', () => {
+  const { getByText } = renderWithRedux(<App />);
+  const headline = getByText(/Team approvals admin/i);
+  expect(headline).toBeInTheDocument();
 });
